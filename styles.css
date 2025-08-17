@@ -1,12 +1,32 @@
 /* ===== Theme ===== */
-:root{
-  --cream: #f7f3ee; --cream-2:#faf6f1; --white:#ffffff; --ink:#222; --muted:#6b6b6b;
-  --line:#eae6df; --brand:#c9b79c; --accent:#e8dcc8; --shadow:0 8px 30px rgba(0,0,0,.08);
-}
-@media (prefers-color-scheme: light){
-  :root{--accent: #efe6d7; --primary: #6b5b45;  --cream:#1b1a19; --cream-2:#151413; --white:#0f0f0f; --ink:#eee; --muted:#a9a9a9; --line:#262422; --brand:#c7b08e; --accent:#2a2724; --shadow:0 8px 30px rgba(0,0,0,.35); }
-}
+:root {
+  color-scheme: light; /* اجبار المتصفح على الفاتح */
 
+  --cream: #f7f3ee;
+  --cream-2: #faf6f1;
+  --white: #ffffff;
+  --ink: #222;
+  --muted: #6b6b6b;
+  --line: #eae6df;
+  --brand: #c9b79c;
+  --accent: #e8dcc8;
+  --shadow: 0 8px 30px rgba(0,0,0,.08);
+  --primary: #6b5b45;
+}
+/*@media (prefers-color-scheme: dark) {
+  :root {
+    --cream: #1b1a19;
+    --cream-2: #151413;
+    --white: #0f0f0f;
+    --ink: #eee;
+    --muted: #a9a9a9;
+    --line: #262422;
+    --brand: #c7b08e;
+    --accent: #2a2724;
+    --shadow: 0 8px 30px rgba(0,0,0,.35);
+    --primary: #d8c9b3;
+  }
+}*/
 *{box-sizing:border-box}
 html,body{height:100%}
 body{margin:0; font-family: Inter, "Noto Kufi Arabic", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans", Arial; color:var(--ink);
