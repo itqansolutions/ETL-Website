@@ -324,42 +324,28 @@ body{
 .about-text .lead { color: var(--muted); margin-bottom: 12px; }
 
 /* ===== About layout ===== */
-.about-intro { padding-top: 24px; }
-
-.about-split{
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 520px); /* النص | الصورة */
-  gap: 28px;
-  align-items: center;
-}
-
-/* نص العناوين */
-.about-text h1 { margin: 0 0 10px; font-size: clamp(26px, 3.2vw, 40px); }
-.about-text h3 { margin: 18px 0 8px; }
-.about-text .lead { color: var(--muted); margin-bottom: 12px; }
-
-/* الصوره الجانبية */
+/* ====== Desktop / الافتراضي ====== */
 .about-figure{
   position: relative;
   width: 100%;
   max-width: 520px;
-  min-height: 320px;           /* ارتفاع مضمون قبل ما الصورة تجهّز */
+  /* سيب الـ aspect-ratio يتحكم في الارتفاع بدل الضغط بـ min-height */
   aspect-ratio: 4 / 3;
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
-  background: #f4efe7;         /* لون مؤقت لو الصورة لسه */
+  background: #f4efe7;
   isolation: isolate;
-  animation: float 8s ease-in-out infinite;
 }
 
 .about-figure img{
+  position: absolute;   /* نخلي الصورة تتمد جوه الفيجَر */
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  display: block;
-  transform: scale(1.02);
+  object-fit: cover;     /* يغطي المساحة بدون تمدد */
+  object-position: center; /* تموضع متسق */
 }
 
 /* جلو بسيط خلف الصورة */
@@ -374,10 +360,34 @@ body{
   pointer-events: none;
 }
 
-/* موبايل: عمود واحد والصورة فوق النص */
+/* أنيميشن لطيف للديسكتوب فقط */
+@media (min-width: 901px){
+  .about-figure { animation: float 8s ease-in-out infinite; }
+  .about-figure img { transform: scale(1.02); }
+}
+
+/* ====== Mobile ====== */
 @media (max-width: 900px){
   .about-split{ grid-template-columns: 1fr; }
-  .about-figure{ order: -1; margin-bottom: 14px; min-height: 240px; max-width: 100%; }
+  .about-figure{
+    order: -1;
+    margin-bottom: 14px;
+    max-width: 100%;
+    /* شاشات الموبايل بتستفيد أكتر من 16:9 */
+    aspect-ratio: 16 / 9;
+    /* لغينا أي min-height عشان ما يكسرش الـ aspect-ratio */
+    min-height: unset;
+    /* اختياري: سقف ارتفاع عشان ما تبقاش عالية أوي */
+    max-height: 60vh;
+  }
+  /* على الموبايل، بلاش سكيل عشان ما يقصّش الصورة */
+  .about-figure img { transform: none; }
+}
+
+/* اختياري: احترام تفضيل المستخدم لتقليل الحركة */
+@media (prefers-reduced-motion: reduce){
+  .about-figure { animation: none !important; }
+  .about-figure img { transform: none !important; }
 }
 
 /* أنيميشن الظهور (عندك بالفعل reveal-up و delay-*) */
