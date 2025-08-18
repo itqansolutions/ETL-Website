@@ -1,80 +1,89 @@
-<html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title data-i18n="about.title">عن ETL</title>
+  <title data-i18n="about.title">About ETL</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header container">
     <a class="brand" href="index.html"><span class="logo-dot"></span><span class="brand-text">ETL</span></a>
-    <input type="checkbox" id="nav-toggle2" class="nav-toggle"><label for="nav-toggle2" class="burger"><span></span><span></span><span></span></label>
-    <nav class="nav"><a href="index.html" data-i18n="nav.home">الرئيسية</a><a href="about.html" class="active" data-i18n="nav.about">من نحن</a><a href="catalogue.html" data-i18n="nav.catalogue">الكتالوج</a><a href="privacy.html" data-i18n="nav.privacy">الخصوصية والسياسة</a><a href="contact.html" data-i18n="nav.contact">اتصل بنا</a><button class="lang-switch" id="langBtn">EN</button></nav>
+    <input type="checkbox" id="nav-toggle2" class="nav-toggle">
+    <label for="nav-toggle2" class="burger"><span></span><span></span><span></span></label>
+    <nav class="nav">
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="about.html" class="active" data-i18n="nav.about">About Us</a>
+      <a href="catalogue.html" data-i18n="nav.catalogue">Catalogue</a>
+      <a href="privacy.html" data-i18n="nav.privacy">Privacy & Policy</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact Us</a>
+      <button class="lang-switch" id="langBtn">AR</button>
+    </nav>
   </header>
-<section class="container section about-intro">
-  <div class="split about-split">
-    <!-- النص -->
-    <div class="about-text">
-      <h1 class="reveal-up" data-i18n="about.title">عن ETL</h1>
-      <p class="lead reveal-up delay-1" data-i18n="about.blurb">
-        ETL شركة متخصصة في حلول الكتالوج الصناعي B2B، نقدم واجهات أنيقة وتجربة استخدام ممتازة.
-      </p>
 
-      <h3 class="reveal-up delay-2" data-i18n="about.vision">رؤيتنا</h3>
-      <p class="reveal-up delay-3" data-i18n="about.visionText">
-        أن نكون المنصة المفضلة لكتالوجات الشركات في المنطقة.
-      </p>
+  <section class="container section about-intro">
+    <div class="split about-split">
+      <!-- النص -->
+      <div class="about-text">
+        <h1 class="reveal-up" data-i18n="about.h1">About Us</h1>
 
-      <h3 class="reveal-up delay-4" data-i18n="about.mission">رسالتنا</h3>
-      <p class="reveal-up delay-5" data-i18n="about.missionText">
-        تمكين الشركات من عرض منتجاتها باحترافية لزيادة الثقة والمبيعات.
-      </p>
+        <p class="lead reveal-up delay-1" data-i18n="about.lead">
+          ETL specializes in B2B industrial catalogue solutions, delivering elegant UIs and great UX.
+        </p>
+
+        <h3 class="reveal-up delay-2" data-i18n="about.vision">Our Vision</h3>
+        <p class="reveal-up delay-3" data-i18n="about.visionText">
+          To be the preferred corporate catalogue platform in the region.
+        </p>
+
+        <h3 class="reveal-up delay-4" data-i18n="about.mission">Our Mission</h3>
+        <p class="reveal-up delay-5" data-i18n="about.missionText">
+          Empower companies to present products professionally to boost trust and sales.
+        </p>
+      </div>
+
+      <!-- الصورة الجانبية -->
+      <figure class="about-figure reveal-up delay-2">
+        <img
+          src="about-side.jpg"
+          alt="Product studio with creamy, white and black tones"
+          width="1200" height="900"
+          loading="eager" decoding="async"
+          onerror="this.closest('figure').style.display='none'">
+        <span class="about-glow" aria-hidden="true"></span>
+      </figure>
     </div>
+  </section>
 
-    <!-- الصورة الجانبية -->
-    <figure class="about-figure reveal-up delay-2">
-      <img
-        src="about-side.jpg"
-        alt="استوديو منتجات ميلامين بألوان كريمية وأبيض وأسود"
-        width="1200" height="900"
-        loading="eager" decoding="async"
-        onerror="this.closest('figure').style.display='none'">
-      <span class="about-glow" aria-hidden="true"></span>
-    </figure>
-  </div>
-</section>
-
-    <footer class="site-footer">
+  <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-col">
         <div class="brand-row">
           <span class="logo-dot"></span>
           <strong>ETL</strong>
         </div>
-        <p class="muted" data-i18n="footer.tag">حلول كتالوج احترافية للشركات.</p>
+        <p class="muted" data-i18n="footer.tag">Professional catalogue solutions for businesses.</p>
       </div>
       <div class="footer-col">
-        <h4 data-i18n="footer.quick">روابط</h4>
+        <h4 data-i18n="footer.quick">Quick Links</h4>
         <ul class="footer-links">
-          <li><a href="about.html" data-i18n="nav.about">من نحن</a></li>
-          <li><a href="catalogue.html" data-i18n="nav.catalogue">الكتالوج</a></li>
-          <li><a href="privacy.html" data-i18n="nav.privacy">الخصوصية والسياسة</a></li>
-          <li><a href="contact.html" data-i18n="nav.contact">اتصل بنا</a></li>
+          <li><a href="about.html" data-i18n="nav.about">About Us</a></li>
+          <li><a href="catalogue.html" data-i18n="nav.catalogue">Catalogue</a></li>
+          <li><a href="privacy.html" data-i18n="nav.privacy">Privacy & Policy</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">Contact Us</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4 data-i18n="footer.contact">تواصل</h4>
+        <h4 data-i18n="footer.contact">Contact</h4>
         <div class="cta-row">
           <a class="cta" href="https://wa.me/201000000000" target="_blank" rel="noopener" aria-label="WhatsApp">
-            <!-- WhatsApp SVG -->
             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M.057 24l1.687-6.163A11.867 11.867 0 0111.99 0C18.627 0 24 5.373 24 12s-5.373 12-12 12a11.95 11.95 0 01-6.124-1.688L.057 24zm6.597-3.807c1.735 1.033 3.276 1.666 5.392 1.666 5.448 0 9.886-4.438 9.886-9.886 0-5.449-4.438-9.887-9.886-9.887-5.45 0-9.887 4.438-9.887 9.887 0 2.127.69 3.666 1.85 5.392l-.987 3.597 3.632-.769zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.03-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.149-.173.198-.297.297-.495.099-.198.05-.372-.025-.521-.074-.149-.669-1.611-.916-2.206-.242-.58-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
-            <span data-i18n="footer.whatsapp">واتساب</span>
+            <span data-i18n="footer.whatsapp">WhatsApp</span>
           </a>
           <a class="cta" href="mailto:info@etl.example" aria-label="Email">
-            <!-- Mail SVG -->
             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            <span data-i18n="footer.email">إيميل</span>
+            <span data-i18n="footer.email">Email</span>
           </a>
         </div>
         <div class="social-row">
@@ -100,6 +109,7 @@
       </div>
     </div>
   </footer>
+
   <script src="app.js"></script>
 </body>
 </html>
