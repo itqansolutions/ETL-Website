@@ -19,9 +19,7 @@
     <section id="downloads" class="cards years">
       <!-- JS will render year cards here -->
     </section>
-<section id="downloads" class="cards years">
-  <!-- JS will render year cards here -->
-</section>
+
 
 <!-- Filters (Step 2) -->
 <section class="filters">
@@ -128,7 +126,129 @@
       </div>
     </div>
   </footer>
-  <script src="app.js"></script>
-</body>
+<!-- Download Gate Modal -->
+<div id="dlModal" class="modal" hidden>
+  <div class="modal__backdrop" data-close></div>
+  <div class="modal__card" role="dialog" aria-modal="true" aria-labelledby="dlTitle">
+    <button class="modal__close" type="button" data-close aria-label="إغلاق">×</button>
+    <h3 id="dlTitle" style="margin-top:0">قبل التحميل</h3>
+    <p class="muted" style="margin-top:-6px">من فضلك املأ بياناتك ليصلك كل جديد.</p>
 
+    <form id="dlForm" autocomplete="on">
+      <input type="hidden" name="file" id="dlFile">
+      <div class="row">
+        <label>الاسم</label>
+        <input type="text" name="name" id="dlName" placeholder="الاسم الكامل" required>
+      </div>
+      <div class="row">
+        <label>Email</label>
+        <input type="email" name="email" id="dlEmail" placeholder="name@example.com" required>
+      </div>
+      <div class="row">
+        <label>رقم الموبايل</label>
+        <input type="tel" name="phone" id="dlPhone" placeholder="01123456789" required>
+      </div>
+
+      <div class="row" style="display:flex;gap:10px;align-items:center">
+        <button class="btn primary" type="submit" id="dlSubmit">تحميل الآن</button>
+        <span id="dlMsg" class="muted" style="font-size:14px"></span>
+      </div>
+    </form>
+  </div>
+</div>
+
+  <script src="app.js"></script>
+<script>
+(function(){
+  const MODAL = document.getElementById('dlModal');
+  const FORM  = document.getElementById('dlForm');
+  const FILE  = document.getElementById('dlFile');
+  const NAME  = document.getElementById('dlName');
+  const EMAIL = document.getElementById('dlEmail');
+  const PHONE = document.getElementById('dlPhone');
+  const MSG   = document.getElementById('dlMsg');
+  const BTN   = document.getElementById('dlSubmit');
+
+  const alreadyRegistered = () => !!localStorage.getItem('etl_download_gate_ok');
+
+  function openModal(file){
+    FILE.value = file || '';
+    MODAL.hidden = false;
+    MSG.textContent = '';
+    NAME.focus();
+  }
+  function closeModal(){ MODAL.hidden = true }
+
+  // حوّل أي مسار نسبي لمسار مطلق مضمون
+  function toAbsoluteUrl(url){
+    try {
+      return new URL(url, window.location.origin + window.location.pathname).href;
+    } catch(e){
+      return url;
+    }
+  }
+
+  // اعتراض روابط PDF
+  document.addEventListener('click', (e)=>{
+    const a = e.target.closest('a.pdf-link');
+    if(!a) return;
+
+    // ناخد المسار من data-file لو موجود، وإلا من href
+    let file = a.dataset.file || a.getAttribute('href') || '';
+    // لو اللينك عامل href="#" لازم يكون عندنا data-file
+    if(!file) return;
+
+    // نتأكد إنه PDF
+    if(!file.toLowerCase().endsWith('.pdf')) return;
+
+    if(alreadyRegistered()){
+      // نسمح بالتحميل الطبيعي أو نفتح احنا يدويًا
+      // هنا هنفتحه يدويًا لضمان المسار المطلق
+      e.preventDefault();
+      const abs = toAbsoluteUrl(file);
+      console.log('[PDF direct]', abs);
+      window.location.href = abs;
+      return;
+    }
+
+    e.preventDefault();
+    openModal(file);
+  });
+
+  // إرسال البيانات ثم بدء التحميل
+  FORM.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    MSG.textContent = '';
+    BTN.disabled = true;
+
+    const payload = new FormData(FORM);
+    try{
+      const res = await fetch('send-download.php', { method:'POST', body: payload });
+      const json = await res.json().catch(()=>({ok:false, msg:'خطأ في الاستجابة'}));
+      if(json.ok){
+        localStorage.setItem('etl_download_gate_ok','1');
+        MSG.textContent = 'تم الإرسال بنجاح… يبدأ التحميل الآن.';
+
+        // جهز المسار المطلق وافتحه
+        const abs = toAbsoluteUrl(FILE.value);
+        console.log('[PDF after form]', abs);
+
+        setTimeout(()=>{
+          window.location.href = abs;
+          closeModal();
+        }, 500);
+      }else{
+        MSG.textContent = json.msg || 'تعذّر الإرسال، حاول مرة أخرى.';
+      }
+    }catch(err){
+      MSG.textContent = 'تعذّر الاتصال بالخادم.';
+    }finally{
+      BTN.disabled = false;
+    }
+  });
+})();
+</script>
+
+
+</body>
 </html>
